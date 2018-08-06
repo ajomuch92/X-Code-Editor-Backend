@@ -2,7 +2,7 @@
 // const createService = require('feathers-mongodb');
 const blobService = require('feathers-blob');
 const fs = require('fs-blob-store');
-const blobStorage = fs('./public/uploads');
+const blobStorage = fs(__dirname + '/uploads');
 const hooks = require('./uploads.hooks');
 
 module.exports = function (app) {

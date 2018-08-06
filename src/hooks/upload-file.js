@@ -13,7 +13,7 @@ module.exports = function (options = {}) {
     const uploads = app.service('uploads');
     const response = await uploads.create({uri: data.uri});
     delete data.uri;
-    data.url = './public/uploads/'+response.id;
+    data.url = response.id;
     data.createdAt = new Date();
     data.updatedAt = new Date();
     return context;
