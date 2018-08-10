@@ -7,6 +7,7 @@ const archivosCompartidosUsuario = require('./archivos-compartidos-usuario/archi
 const mensajesArchivo = require('./mensajes-archivo/mensajes-archivo.service.js');
 const archivos = require('./archivos/archivos.service.js');
 const uploads = require('./uploads/uploads.service.js');
+const tiposArchivos = require('./tipos_archivos/tipos_archivos.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -18,4 +19,5 @@ module.exports = function (app) {
   app.configure(mensajesArchivo);
   app.configure(archivos);
   app.configure(uploads);
+  app.configure(tiposArchivos);
 };
