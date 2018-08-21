@@ -25,8 +25,8 @@ module.exports = {
       // Always must be the last hook
       protect('password')
     ],
-    find: [postProcessUser()],
-    get: [],
+    find: [],
+    get: [postProcessUser()],
     create: [],
     update: [],
     patch: [],

@@ -1,22 +1,24 @@
 
 
-const uploadFile = require('../../hooks/upload-file');
+const prepararArchivo = require('../../hooks/preparar-archivo');
+
+const populateArchivos = require('../../hooks/populate-archivos');
 
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [uploadFile()],
-    update: [uploadFile()],
+    create: [prepararArchivo()],
+    update: [prepararArchivo()],
     patch: [],
     remove: []
   },
 
   after: {
     all: [],
-    find: [],
-    get: [],
+    find: [populateArchivos()],
+    get: [populateArchivos()],
     create: [],
     update: [],
     patch: [],
