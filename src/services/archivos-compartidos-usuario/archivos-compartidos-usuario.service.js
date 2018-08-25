@@ -8,10 +8,10 @@ module.exports = function (app) {
   const options = { paginate };
 
   // Initialize our service with any options it requires
-  app.use('/archivos_compartidos_&amp;_usuario', createService(options));
+  app.use('/archivos_compartidos_usuario', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('archivos_compartidos_&amp;_usuario');
+  const service = app.service('archivos_compartidos_usuario');
 
   mongoClient.then(db => {
     service.Model = db.collection('archivos-compartidos-usuario');

@@ -10,6 +10,8 @@ const postProcessUser = require('../../hooks/post-process-user');
 
 const patchUserHook = require('../../hooks/patch-user-hook');
 
+const deleteUserHook = require('../../hooks/delete-user-hook');
+
 module.exports = {
   before: {
     all: [],
@@ -18,7 +20,7 @@ module.exports = {
     create: [hashPassword(), preProcessUser()],
     update: [hashPassword(), authenticate('jwt'), preProcessUser()],
     patch: [hashPassword(), authenticate('jwt'), patchUserHook()],
-    remove: [ authenticate('jwt') ]
+    remove: [authenticate('jwt'), deleteUserHook()]
   },
 
   after: {

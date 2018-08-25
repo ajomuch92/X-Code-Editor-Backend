@@ -1,5 +1,7 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const populateArchivosCompartidos = require('../../hooks/populate-archivos-compartidos');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
@@ -13,7 +15,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [populateArchivosCompartidos()],
     get: [],
     create: [],
     update: [],

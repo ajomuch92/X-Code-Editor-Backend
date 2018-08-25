@@ -9,12 +9,12 @@ module.exports = function (options = {}) {
     let app = context.app;
     let estado = await app.service('estado-archivos').find({query: {estado: data.estado}});
     data.id_estado = estado.data[0]._id.toString();
-    let tipo_archivo = await app.service('tipos-archivos').find({query: {name: _.capitalize(data.tipo_archivo)}});
-    if(_.isEmpty(tipo_archivo.data)){
-      tipo_archivo = await app.service('tipos-archivos').create({name: data.tipo_archivo, icon: 'src/assets/unknow.png'});
-      data.id_tipo_archivo = tipo_archivo._id;
+    let tipo = await app.service('tipos-archivos').find({query: {extension: data.tipo_archivo}});
+    if(_.isEmpty(tipo.data)){
+      tipo = await app.service('tipos-archivos').create({name: data.tipo_archivo, extension: '.unkwon', icon: 'src/assets/unknow.png'});
+      data.id_tipo_archivo = tipo._id;
     } else {
-      data.id_tipo_archivo = tipo_archivo.data[0]._id.toString();
+      data.id_tipo_archivo = tipo.data[0]._id.toString();
     }
     data.creado = new Date();
     data.actualizado = new Date();
