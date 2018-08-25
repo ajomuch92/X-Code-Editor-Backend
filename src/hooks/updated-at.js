@@ -4,10 +4,8 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    let data = context.result;
-    const app = context.app;
-    let imagen = await app.service('uploads').get(data.fotoPerfil);
-    data.imagen = imagen;
+    const data = context.data;
+    data.actualizado = new Date();
     return context;
   };
 };

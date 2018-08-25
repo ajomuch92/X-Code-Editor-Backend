@@ -8,6 +8,8 @@ const preProcessUser = require('../../hooks/pre-process-user');
 
 const postProcessUser = require('../../hooks/post-process-user');
 
+const patchUserHook = require('../../hooks/patch-user-hook');
+
 module.exports = {
   before: {
     all: [],
@@ -15,7 +17,7 @@ module.exports = {
     get: [ authenticate('jwt') ],
     create: [hashPassword(), preProcessUser()],
     update: [hashPassword(), authenticate('jwt'), preProcessUser()],
-    patch: [hashPassword(), authenticate('jwt'), preProcessUser()],
+    patch: [hashPassword(), authenticate('jwt'), patchUserHook()],
     remove: [ authenticate('jwt') ]
   },
 

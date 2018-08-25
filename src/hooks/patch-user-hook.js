@@ -1,13 +1,17 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-
+const _ = require('lodash');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    let data = context.result;
     const app = context.app;
-    let imagen = await app.service('uploads').get(data.fotoPerfil);
-    data.imagen = imagen;
+    const data = context.data;
+    const uploads = app.service('uploads');
+    if(!_.isUndefined(data.profile)){
+      const response = await uploads.create(data.profile);
+      delete data.profile;
+      data.fotoPerfil = response.id;
+    }
     return context;
   };
 };
