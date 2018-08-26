@@ -11,7 +11,7 @@ module.exports = function (options = {}) {
     data.id_estado = estado.data[0]._id.toString();
     let tipo = await app.service('tipos-archivos').find({query: {extension: data.tipo_archivo}});
     if(_.isEmpty(tipo.data)){
-      tipo = await app.service('tipos-archivos').create({name: data.tipo_archivo, extension: '.unkwon', icon: 'src/assets/unknow.png'});
+      tipo = await app.service('tipos-archivos').create({name: data.tipo_archivo, extension: data.tipo_archivo, icon: 'src/assets/unknow.png'});
       data.id_tipo_archivo = tipo._id;
     } else {
       data.id_tipo_archivo = tipo.data[0]._id.toString();
